@@ -1,0 +1,22 @@
+name: Docker Build
+
+# Wyzwalacz workflow: przy push lub pull request do głównego brancha
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-docker:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: |
+          docker build -t demo-app .
